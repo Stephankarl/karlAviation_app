@@ -1,4 +1,4 @@
-export const baseURL = 'http://localhost:3001/api'
+export const baseURL = 'https://karl-aviation-api.herokuapp.com/api'
 
 //Contracts
 export const contractsUrl = '/contracts'

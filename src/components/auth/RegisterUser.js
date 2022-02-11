@@ -42,7 +42,7 @@ export default function RegisterUser() {
     useEffect(() => {
         if (isLoggedIn)
             navigate(`/profile/${user._id}`)
-    }, [isLoggedIn, user])
+    }, [isLoggedIn, user, navigate])
 
     const [snack, setSnack] = useState(message)
 
