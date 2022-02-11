@@ -92,7 +92,7 @@ export default function InvoiceContract({ handleForward }) {
                     </RadioGroup>
                 </FormControl>
             </Grid>
-            <Grid item xs={6}>
+            <Grid item xs={12} sm={8} md={6}>
                 <FormControl fullWidth sx={{ m: 1 }}>
                     <TextField name='contractReference' value={invoiceDetails.contractReference} onChange={handleChange} label='Contract Reference' />
                 </FormControl>
