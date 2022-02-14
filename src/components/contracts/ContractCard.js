@@ -9,7 +9,7 @@ import AgentSelector from '../formComponents/AgentSelector'
 import DeleteButton from '../buttons/DeleteButton';
 
 //IMPORT FUNCTION
-import { closeContract, getOneContract, deleteContract } from '../store/contracts';
+import { closeContract, getOneContract } from '../store/contracts';
 import { getOneAgent } from '../store/agents';
 
 // MATERIAL UI
