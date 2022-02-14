@@ -6,6 +6,7 @@ import NumberFormat from 'react-number-format';
 
 //IMPORT FILES
 import AgentSelector from '../formComponents/AgentSelector'
+import DeleteButton from '../buttons/DeleteButton';
 
 //IMPORT FUNCTION
 import { closeContract, getOneContract, deleteContract } from '../store/contracts';
@@ -19,7 +20,7 @@ import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CheckIcon from '@mui/icons-material/Check';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import PaidIcon from '@mui/icons-material/Paid';
-import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+
 
 export default function ContractCard({ id }) {
     const dispatch = useDispatch()
@@ -76,9 +77,7 @@ export default function ContractCard({ id }) {
                             <ReceiptIcon style={ (!contract.invoice.invoiced) ? { color: '#373543' } : { color: '#3cc194' }} />
                             <PaidIcon style={ (!contract.payment.paymentComplete) ? { color: '#373543' } : { color: '#3cc194' }} />
                             { contract.open && 
-                                <IconButton onClick={() => dispatch(deleteContract(contract._id))}>
-                                    <DeleteForeverIcon color='error' />
-                                </IconButton>
+                                <DeleteButton contractId={contract._id} />
                             }
                         </Grid>
 
