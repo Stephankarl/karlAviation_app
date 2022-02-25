@@ -8,7 +8,7 @@ const api = ({ dispatch, getState }) => next => async action => {
 
     const { url, method, data, onStart, onSuccess, onError } = action.payload
 
-    if (onStart) dispatch({ type: onStart})
+    if (onStart) dispatch({ type: onStart })
 
     next(action)
 

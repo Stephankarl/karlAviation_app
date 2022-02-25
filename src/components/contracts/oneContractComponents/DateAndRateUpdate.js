@@ -62,41 +62,54 @@ export default function DateAndRateUpdate() {
 
   return (
       <Grid container>
-        <Grid item xs={12} m={3}>
+        <Grid item xs={12} my={3}>
           <Typography variant='h5' align='center'>Update Contract</Typography>
         </Grid>
-          <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center'}}>
-              <FormControl sx={{ m: 2, minWidth: '250px' }}>
-                <DateSelector values={contractState} setValues={setContractState} name='startDate' label='Start Date' />
-              </FormControl>
-              <FormControl sx={{ m: 2, minWidth: '250px' }}>
-                <DateSelector values={contractState} setValues={setContractState} name='endDate' label='End Date' />
-              </FormControl>
+
+        <Grid item xs={12} container>
+          <Grid item xs={12} sm={8} md={6}>
+            <FormControl sx={{ my: 1 }} fullWidth>
+              <DateSelector values={contractState} setValues={setContractState} name='startDate' label='Start Date' />
+            </FormControl>
           </Grid>
-          <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center'}}>
-              <FormControl sx={{ m: 2, minWidth: '250px' }}>
+          <Grid item xs={12} sm={8} md={6}>
+            <FormControl sx={{ my: 1 }} fullWidth>
+              <DateSelector values={contractState} setValues={setContractState} name='endDate' label='End Date' />
+            </FormControl>
+          </Grid>
+        </Grid>
+
+          <Grid item xs={12} >
+            <Grid item xs={12} sm={8} md={6}>
+              <FormControl sx={{ my: 1 }} fullWidth>
                 <TextField name='rate' value={contractState.rate} label='Rate' onChange={handleChange} />
               </FormControl>
-              <FormControl sx={{ m: 2, minWidth: '250px' }}>
+            </Grid>
+            <Grid item xs={12} sm={8} md={6}>
+              <FormControl sx={{ my: 1 }} fullWidth>
                 <FormControlLabel control={<Checkbox name='retainer' checked={contractState.retainer} onChange={handleChange} />} label="Retainer" />
               </FormControl>
+            </Grid>
           </Grid>
-          <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center'}}>
-            <Button variant='outlined' size='small' fullWidth sx={{ width: '50%' }} onClick={handleUpdate}>Update</Button>
-          </Grid>
-
-          <Grid item xs={12} m={3} style={{ display: 'flex', justifyContent: 'center'}}>
-            <Typography variant='h5' align='center'>Add Expense</Typography>
-          </Grid>
-          <Grid item xs={12} style={{ display: 'flex', justifyContent: 'center'}}>
-            <FormControl sx={{ m: 2, minWidth: '250px' }}>
-              <TextField name='expense' value={contractState.expense} label='Expense' onChange={handleChange} />
-            </FormControl>
-            <FormControl sx={{ m: 2, minWidth: '250px' }}>
-              <Button variant='outlined' sx={{ m: 2 }} onClick={handleExpenseAdd}>Add</Button>
-            </FormControl>
+          <Grid item xs={12}>
+            <Button variant='outlined' size='small' fullWidth onClick={handleUpdate}>Update</Button>
           </Grid>
 
+          <Grid container item xs={12} my={3}>
+            <Grid item xs={12}>
+              <Typography variant='h5' mb={3} align='center'>Add Expense</Typography>
+            </Grid>
+            <Grid item xs={12} sm={8} md={6}>
+              <FormControl sx={{ my: 1 }} fullWidth>
+                <TextField name='expense' value={contractState.expense} label='Expense' onChange={handleChange} />
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={8} md={6}>
+              <FormControl sx={{ my: 1 }} fullWidth>
+                <Button variant='outlined' onClick={handleExpenseAdd}>Add</Button>
+              </FormControl>
+            </Grid>
+          </Grid>
 
           <Grid container item >
             <Grid item xs={12} m={3}>

@@ -11,6 +11,7 @@ import Profile from './auth/Profile';
 import AllContracts from './contracts/AllContracts'
 import NewContract from './contracts/NewContract'
 import OneContract from './contracts/OneContract'
+import ClosedContracts from './contracts/ClosedContracts'
 
 import NewAgent from './agents/NewAgent'
 import AllAgents from './agents/AllAgents'
@@ -37,6 +38,7 @@ import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SupportAgentIcon from '@mui/icons-material/SupportAgent';
 import SettingsIcon from '@mui/icons-material/Settings';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 //MAKING STYLES
 const useStyles = makeStyles(theme => ({
@@ -191,6 +193,14 @@ export default function MiniDrawer() {
                 <ListItemText primary='Dashboard' />
             </ListItem>
           </Link>
+          <Link to='/contracts/closed' className={classes.linkStyles} >
+            <ListItem button>
+                <ListItemIcon>
+                    <CheckBoxIcon />
+                </ListItemIcon>
+                <ListItemText primary='Closed Contracts' />
+            </ListItem>
+          </Link>
           <Link to='/contracts/all' className={classes.linkStyles} >
             <ListItem button>
               <ListItemIcon>
@@ -225,6 +235,8 @@ export default function MiniDrawer() {
             <Route path='/contracts/all' exact element={<AllContracts />} />
             <Route path='/contracts/new' exact element={<NewContract />} />
             <Route path='/contracts/:id' exact element={<OneContract />} />
+            <Route path='/contracts/closed' exact element={<ClosedContracts />} />
+
 
             {/* AGENTS  */}
             <Route path='/agents/all' exact element={<AllAgents />} />

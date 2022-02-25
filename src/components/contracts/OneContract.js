@@ -54,7 +54,7 @@ export default function OneContract() {
             <Grid item xs={12} sm={6} md={4}>
                 <ContractStepper activeStep={activeStep} handleBack={handleBack} handleForward={handleForward} />
             </Grid>
-            <Grid item xs={8}>
+            <Grid item xs={12} md={8}>
                 { activeStep === 0 && 
                     <DateAndRateUpdate />
                 }
