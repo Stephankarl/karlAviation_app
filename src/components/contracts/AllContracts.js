@@ -23,24 +23,24 @@ export default function AllContracts() {
         <Grid container spacing={3}>
 
             { prevYearContracts.length > 0 && 
-                prevYearContracts.map(contract => (
-                    <Grid container spacing={3} item>
-                        <Grid item xs={12}>
-                            <Typography variant='h5'>{moment().subtract(1, 'years').format('YYYY')}</Typography>
-                        </Grid>
-                        <ContractCard key={contract._id} id={contract._id} />
-                    </Grid>
-                ))
-            }
-
-            { contracts.map(contract => (
                 <Grid container spacing={3} item>
                     <Grid item xs={12}>
-                        <Typography variant='h5'>{moment().format('YYYY')}</Typography>
+                        <Typography variant='h5'>{moment().subtract(1, 'years').format('YYYY')}</Typography>
                     </Grid>
-                    <ContractCard key={contract._id} id={contract._id} />
+                    { prevYearContracts.map(contract => (
+                            <ContractCard key={contract._id} id={contract._id} />
+                    )) }
                 </Grid>
-            ))}
+            }
+
+            <Grid container spacing={3} item>
+                <Grid item xs={12}>
+                    <Typography variant='h5'>{moment().format('YYYY')}</Typography>
+                </Grid>
+                { contracts.map(contract => (
+                    <ContractCard key={contract._id} id={contract._id} />
+                ))}
+            </Grid>
         </Grid>
     )
 }
