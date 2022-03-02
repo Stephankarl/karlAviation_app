@@ -24,7 +24,7 @@ export default function TotalProgress() {
         contracts.forEach(contract => {
             progress += parseFloat(contract.totalIncome)
         })
-        return progress 
+        return parseInt(progress)
     }
 
   return (
@@ -45,7 +45,7 @@ export default function TotalProgress() {
                 }}
             >
                 <Typography variant="h4" component="div" color="text.secondary">
-                    {`${progressCalc()/1000}K`}
+                    {`${parseFloat(progressCalc()/1000).toFixed(1)}K`}
                 </Typography>
             </Box>
         </Box>
