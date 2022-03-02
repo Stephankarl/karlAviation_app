@@ -49,6 +49,11 @@ export default function ContractCard({ id }) {
                 />
                 <CardContent>
                     <Grid container>
+                        { contract.invoice.invoiceNumber && 
+                            <Grid item xs={12}>
+                                <Typography mb={1}>{`(${contract.invoice.invoiceNumber})`}</Typography>
+                            </Grid>
+                        }
                         <Grid item xs={6}>
                             <Typography>Rate:</Typography>
                         </Grid>
@@ -60,6 +65,12 @@ export default function ContractCard({ id }) {
                         </Grid>
                         <Grid item xs={6}>
                             <Typography align='right'><NumberFormat value={contract.totalIncome} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography>Invoice Total:</Typography>
+                        </Grid>
+                        <Grid item xs={6}>
+                            <Typography align='right'><NumberFormat value={contract.invoice.invoiceTotal} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
                         </Grid>
                         { contract.payment.paid.length > 0 && contract.payment.owed !== 0 &&
                             <Fragment>
