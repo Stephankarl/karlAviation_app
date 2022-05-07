@@ -6,6 +6,7 @@ import NumberFormat from 'react-number-format'
 
 //Import files  
 import DateSelector from '../../formComponents/DateSelector'
+import NavigateButton from '../../buttons/NavigateButton';
 
 //Import Functions
 import { getOneContract, updateContractDaysAndRate, addExpenseToContract } from '../../store/contracts'
@@ -62,18 +63,19 @@ export default function DateAndRateUpdate() {
 
   return (
       <Grid container>
+        <NavigateButton route={`/contracts/${id}/expenses`} label='Expenses' />
         <Grid item xs={12} my={3}>
           <Typography variant='h5' align='center'>Update Contract</Typography>
         </Grid>
 
         <Grid item xs={12} container>
           <Grid item xs={12} sm={8} md={6}>
-            <FormControl sx={{ my: 1 }} fullWidth>
+            <FormControl sx={{ my: 1, p: 1 }} fullWidth>
               <DateSelector values={contractState} setValues={setContractState} name='startDate' label='Start Date' />
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={8} md={6}>
-            <FormControl sx={{ my: 1 }} fullWidth>
+            <FormControl sx={{ my: 1, p: 1 }} fullWidth>
               <DateSelector values={contractState} setValues={setContractState} name='endDate' label='End Date' />
             </FormControl>
           </Grid>
@@ -81,7 +83,7 @@ export default function DateAndRateUpdate() {
 
           <Grid item xs={12} >
             <Grid item xs={12} sm={8} md={6}>
-              <FormControl sx={{ my: 1 }} fullWidth>
+              <FormControl sx={{ my: 1, p: 1 }} fullWidth>
                 <TextField name='rate' value={contractState.rate} label='Rate' onChange={handleChange} />
               </FormControl>
             </Grid>

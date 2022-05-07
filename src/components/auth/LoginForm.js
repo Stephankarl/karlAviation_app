@@ -28,8 +28,8 @@ useEffect(() => {
 }, [userLoggedIn, navigate])
 
 const [formData, setFormData] = useState({
-    email: '',
-    password: ''
+    email: 'stephanglobals@gmail.com',
+    password: 'Aviator007'
 })
 
 const handleChange = e => {
