@@ -1,5 +1,5 @@
-export const baseURL = 'https://karl-aviation-api.herokuapp.com/api'
-// export const baseURL = 'http://localhost:3001/api'
+// export const baseURL = 'https://karl-aviation-api.herokuapp.com/api'
+export const baseURL = 'http://localhost:3001/api'
 
 //Contracts
 export const contractsUrl = '/contracts'
@@ -12,6 +12,9 @@ export const airplanesUrl = '/airplanes'
 
 //Users
 export const usersUrl = '/users'
+
+//Users
+export const authUrl = '/auth'
 
 //Cache Rules
 export const cachedTime = 10

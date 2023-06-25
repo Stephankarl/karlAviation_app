@@ -55,7 +55,7 @@ export const loadAgents = id => (dispatch, getState) => {
 
     dispatch(
         apiCallBegan({
-            url: `${agentsUrl}/${id}`,
+            url: `${agentsUrl}?user=${id}`,
             onStart: agentsRequested.type,
             onSuccess: agentsReceived.type,
             onError: agentsRequestFailed.type

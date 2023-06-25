@@ -24,8 +24,8 @@ export default function HomePage() {
 
     //LOAD ALL DATA
     if (loggedIn) {
-        dispatch(loadContracts(currentUser._id))
-        dispatch(loadAgents(currentUser._id))
+        dispatch(loadContracts(currentUser.id))
+        dispatch(loadAgents(currentUser.id))
     }
 
     if (!loggedIn) 

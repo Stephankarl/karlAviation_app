@@ -40,11 +40,15 @@ export default function NewContract() {
 
     const handleSubmit = () => {
         //BUILD NEW CONTRACT
+        values.startDate.setHours(0,0,0,0)
+        values.endDate.setHours(0,0,0,0)
+        
         const newContract = {
             ...values,
             startDate: Date.parse(values.startDate),
             endDate: Date.parse(values.endDate)
         }
+
         //Dispatch Action
         dispatch(addContract(newContract))
         navigate(`/`)

@@ -66,12 +66,16 @@ export default function ContractCard({ id }) {
                         <Grid item xs={6}>
                             <Typography align='right'><NumberFormat value={contract.totalIncome} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
                         </Grid>
-                        <Grid item xs={6}>
-                            <Typography>Invoice Total:</Typography>
-                        </Grid>
-                        <Grid item xs={6}>
-                            <Typography align='right'><NumberFormat value={contract.invoice.invoiceTotal} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
-                        </Grid>
+                        {/* { contract.complete.completed && 
+                            <Fragment>
+                                <Grid item xs={6}>
+                                    <Typography>Invoice Total:</Typography>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <Typography align='right'><NumberFormat value={contract.invoice.invoiceTotal} displayType={'text'} thousandSeparator={true} prefix={'$'} /></Typography>
+                                </Grid>
+                            </Fragment>
+                        } */}
                         { contract.payment.paid.length > 0 && contract.payment.owed !== 0 &&
                             <Fragment>
                                 <Grid item xs={6}>
@@ -84,7 +88,7 @@ export default function ContractCard({ id }) {
                         }
 
                         <Grid container item justifyContent='space-around' style={{ display: 'flex', alignItems: 'center', marginTop: 15, paddingTop: 15, borderTop: '1px solid grey' }} >
-                            <CheckIcon style={ (!contract.complete.completed) ? { color: '#373543' } : { color: '#3cc194' }} />
+                            {/* <CheckIcon style={ (!contract.complete.completed) ? { color: '#373543' } : { color: '#3cc194' }} /> */}
                             <ReceiptIcon style={ (!contract.invoice.invoiced) ? { color: '#373543' } : { color: '#3cc194' }} />
                             <PaidIcon style={ (!contract.payment.paymentComplete) ? { color: '#373543' } : { color: '#3cc194' }} />
                             { contract.open && 

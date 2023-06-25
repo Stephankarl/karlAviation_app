@@ -12,7 +12,7 @@ import AllContracts from './contracts/AllContracts'
 import NewContract from './contracts/NewContract'
 import OneContract from './contracts/OneContract'
 import ClosedContracts from './contracts/ClosedContracts'
-import ContractExpenses from './contracts/oneContractComponents/ContactExpenses'
+import ExpenseList from './contracts/ExpenseList'
 
 import NewAgent from './agents/NewAgent'
 import AllAgents from './agents/AllAgents'
@@ -237,9 +237,7 @@ export default function MiniDrawer() {
             <Route path='/contracts/new' exact element={<NewContract />} />
             <Route path='/contracts/:id' exact element={<OneContract />} />
             <Route path='/contracts/closed' exact element={<ClosedContracts />} />
-            <Route path='/contracts/:id/expenses' exact element={<ContractExpenses />} />
-
-
+            <Route path='/contracts/:id/expenses' exact element={<ExpenseList />} />
 
             {/* AGENTS  */}
             <Route path='/agents/all' exact element={<AllAgents />} />

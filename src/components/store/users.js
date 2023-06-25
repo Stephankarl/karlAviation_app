@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import jwtDecode from 'jwt-decode'
 
 import { apiCallBegan } from './api';
-import { usersUrl } from './config/api';
+import { authUrl, usersUrl } from './config/api';
 
 const slice = createSlice({
     name: 'user',
@@ -23,8 +24,9 @@ const slice = createSlice({
                 }
             }
             if (payload.type === 'success') {
+                const user = jwtDecode(payload.token)
                 state.loggedIn = true
-                state.currentUser = payload.user
+                state.currentUser = user
             }
         },
 
@@ -61,7 +63,7 @@ export const registerUser = data => apiCallBegan({
 })
 
 export const loginUser = data => apiCallBegan({
-    url: `${usersUrl}/login`,
+    url: `${authUrl}/login`,
     method: 'post',
     data,
     onStart: clearMessage.type,

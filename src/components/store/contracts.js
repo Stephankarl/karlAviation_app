@@ -31,14 +31,9 @@ const slice = createSlice({
             contracts.list.push(payload)
         },
 
-        paymentReceived: (contracts, { payload }) => {
-            const i = contracts.list.findIndex(contract => contract._id === payload.contractId)
-            contracts.list[i] = payload.updatedContract
-        },
-
-        agentAddedToContract: (contracts, { payload }) => {
-            const i = contracts.list.findIndex(contract => contract._id === payload.contractId)
-            contracts.list[i].agent = payload.agent
+        contractEdited: (contracts, { payload }) => {
+            const i = contracts.list.findIndex(contract => contract._id === payload.data._id)
+            contracts.list[i] = payload.data
         },
 
         expenseAddedToContract: (contracts, { payload }) => {
@@ -78,16 +73,6 @@ const slice = createSlice({
             contracts.list[i] = payload.data
         },
 
-        contractCompleted: (contracts, { payload }) => {
-            const i = contracts.list.findIndex(contract => contract._id === payload.contractId)
-            contracts.list[i].complete.completed = payload.completed
-        },
-
-        contractClosed: (contracts, { payload }) => {
-            const i = contracts.list.findIndex(contract => contract._id === payload.contractId)
-            contracts.list[i].open = false
-        },
-
         contractDeleted: (contracts, { payload }) => {
             const i = contracts.list.findIndex(contract => contract._id === payload)
             contracts.list.splice(i, 1)
@@ -100,8 +85,7 @@ const {
     contractsReceived, 
     contractsRequestFailed, 
     contractAdded, 
-    paymentReceived, 
-    agentAddedToContract,
+    contractEdited,
     expenseAddedToContract,
     expensePaid,
     expenseDeleted,
@@ -109,8 +93,6 @@ const {
     dateAndRateUpdated,
     paymentTypeUpdated,
     contractInvoiced,
-    contractCompleted,
-    contractClosed,
     contractDeleted
     } = slice.actions
     
@@ -125,7 +107,7 @@ export const loadContracts = id => (dispatch, getState) => {
 
     dispatch(
         apiCallBegan({
-            url: `${contractsUrl}/${id}`,
+            url: `${contractsUrl}?user=${id}`,
             onStart: contractsRequested.type,
             onSuccess: contractsReceived.type,
             onError: contractsRequestFailed.type
@@ -134,7 +116,7 @@ export const loadContracts = id => (dispatch, getState) => {
 }
 
 export const addContract = data => apiCallBegan({
-    url: `${contractsUrl}/new`,
+    url: `${contractsUrl}`,
     method: 'post',
     data,
     onSuccess: contractAdded.type,
@@ -145,12 +127,28 @@ export const addAgentToContract = (id, agent) => apiCallBegan({
     url: `${contractsUrl}/${id}`,
     method: 'post',
     data:  { agent },
-    onSuccess: agentAddedToContract.type,
+    onSuccess: contractEdited.type,
+    onError: contractsRequestFailed.type
+})
+
+export const addTotalExpenseToContract = (id, totalExpense) => apiCallBegan({
+    url: `${contractsUrl}/${id}`,
+    method: 'post',
+    data: { totalExpense },
+    onSuccess: contractEdited.type,
+    onError: contractsRequestFailed.type
+})
+
+export const receivePayment = (id, payment) => apiCallBegan({
+    url: `${contractsUrl}/${id}/payment`,
+    method: 'post',
+    data: payment,
+    onSuccess: contractEdited.type,
     onError: contractsRequestFailed.type
 })
 
 export const addExpenseToContract = (id, expense) => apiCallBegan({
-    url: `${contractsUrl}/${id}`,
+    url: `${contractsUrl}/${id}/expenses`,
     method: 'post',
     data: { expense },
     onSuccess: expenseAddedToContract.type,
@@ -179,14 +177,6 @@ export const deleteExpense = (contractId, expenseId) => apiCallBegan({
     method: 'patch',
     data: { deleteExpense: expenseId },
     onSuccess: expenseDeleted.type,
-    onError: contractsRequestFailed.type
-})
-
-export const receivePayment = (id, payment) => apiCallBegan({
-    url: `${contractsUrl}/${id}`,
-    method: 'post',
-    data: { payment },
-    onSuccess: paymentReceived.type,
     onError: contractsRequestFailed.type
 })
 
@@ -224,17 +214,17 @@ export const createInvoice = (id, data) => apiCallBegan({
 
 export const closeContract = id => apiCallBegan({
     url: `${contractsUrl}/${id}`,
-    method: 'patch',
-    data: { closeContract: true },
-    onSuccess: contractClosed.type,
+    method: 'put',
+    data: { open: false },
+    onSuccess: contractEdited.type,
     onError: contractsRequestFailed.type
 })
 
 export const completeContract = id => apiCallBegan({
-    url: `${contractsUrl}/${id}`,
-    method: 'patch',
-    data: { completeContract: true },
-    onSuccess: contractCompleted.type,
+    url: `${contractsUrl}/${id}/complete`,
+    method: 'post',
+    data: { complete: true },
+    onSuccess: contractEdited.type,
     onError: contractsRequestFailed.type
 })
 
